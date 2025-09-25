@@ -1,0 +1,27 @@
+name: Run Campaign Scraper
+
+on:
+  schedule:
+   - cron: '30 23 * * 0-4' # 日曜〜木曜の23:30 UTC → 月〜金のAM8:30 JST
+  workflow_dispatch:  # 手動実行も可能にする
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies from requirements.txt
+        run: |
+          pip install -r requirements.txt
+
+      - name: Run Scraper
+        run: |
+          python main.py

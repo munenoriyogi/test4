@@ -1,0 +1,2 @@
+# competitor_update
+Google ColabのPythonファイルの定期実行
